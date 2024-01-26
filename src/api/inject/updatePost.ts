@@ -10,7 +10,7 @@ import { api } from "../api";
           url: `/todos/${newObj.id}`,
           method: 'PATCH'
         }),
-        invalidatesTags: (result,error,bodyObj) => [{
+        invalidatesTags: () => [{
           type: 'Post',
         }]
       })
