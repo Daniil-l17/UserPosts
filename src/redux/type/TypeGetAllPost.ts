@@ -1,6 +1,6 @@
 export interface getAllPost {
-  id: string
-  text: string
+  id: number
+  text: string | null
   img: string
   tema: string
   meta: Meta

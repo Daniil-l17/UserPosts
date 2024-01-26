@@ -10,7 +10,7 @@ import { api } from "../api";
           method: 'POST'
         }),
         invalidatesTags: () => [{
-          type: 'Post'
+          type: 'Post',
         }]
       })
     })

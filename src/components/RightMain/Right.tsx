@@ -1,4 +1,4 @@
-import { Avatar } from "@chakra-ui/react"
+import { Avatar, Button } from "@chakra-ui/react"
 import { getAllPost } from "../../redux/type/TypeGetAllPost"
 import { FC } from "react"
 import { useAppSelector } from "../../hooks/useTyped"
@@ -14,7 +14,7 @@ const Right:FC<getAllPos> = ({el}) => {
     const {user,userAcc} = useAppSelector(state => state.post)
   const [deletePost] = useDeletePostMutation()
   const [upDetePost] = useUpDatePostMutation()
-  console.log(el.meta.Login);
+
   
   const deletePostUser = () => {
     if(user && userAcc?.Login === el.meta.Login){
@@ -23,8 +23,9 @@ const Right:FC<getAllPos> = ({el}) => {
   }
 
     const upDetePosts = (el:getAllPost) => {
-      const newObj = {...el,text: 'SUKA BLYAT'}
-      if(user){
+      if(user && userAcc.Login === el.meta.Login){
+        const texts = prompt()
+        const newObj = {...el,text: texts}
         upDetePost(newObj)
       }
     }
@@ -41,10 +42,12 @@ const Right:FC<getAllPos> = ({el}) => {
         backgroundSize: 'cover',
       }}
       className=" h-[400px] rounded-2xl w-[700px] "></div>
-      <div className='flex flex-1 items-center px-4 '>
+      <div className='flex flex-1 items-center px-4 justify-between '>
       <h1 className='text-[20px] uppercase '>{el.tema}</h1>
-      <button onClick={deletePostUser}>Удалить</button>
-      <button onClick={() => upDetePosts(el)}>Редактировать</button>
+      <div className="flex gap-6 items-center">
+      <Button onClick={deletePostUser} colorScheme='blue'>Удалить</Button>
+      <Button onClick={() => upDetePosts(el)} colorScheme='red'>Редактировать</Button>
+      </div>
       </div>
     </div>
     <div className=" px-6 py-3">
